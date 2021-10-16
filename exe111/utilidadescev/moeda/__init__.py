@@ -1,0 +1,37 @@
+def aumentar(preço = 0, taxa = 0, formato = False):
+    '''
+    --> Calcula o aumento de um determinado preço.
+    retornando o resultado com um sem formatação.
+    :param preço: O preço que se quer reajustar
+    :param taxa: Qual é a porcentagem  do aumento
+    :param formato: quer a saida formatada ou não?
+    :return: o valor reajustado, com ou sem formato.
+    '''
+    res = preço+(preço*taxa/100)
+    return res if formato is False else moeda(res)
+
+def diminuir(preço = 0, taxa = 0, formato = False):
+    res = preço-(preço*taxa/100)
+    return res if formato is False else moeda(res)
+
+def dobro(preço = 0, formato = False):
+    res = preço*2
+    return res if formato is False else moeda(res)
+
+def metade(preço = 0, formato = False):
+    res = preço/2
+    return res if formato is False else moeda(res)
+
+def moeda(preço = 0, moeda = 'R$'):
+    return f'{moeda}{preço:>.2f}'.replace('.', ',')
+
+def resumo(preço=0, taxaA=10, taxaR=5):
+    print('-'*30)
+    print('RESUMO DE VALOR'.center(30))
+    print('-'*30)
+    print(f'Preço analisado: \t{moeda(preço)}')
+    print(f'Dobro do preço: \t{dobro(preço, True)}')
+    print(f'Metade do preço: \t{metade(preço, True)}')
+    print(f'{taxaA}% de aumento: \t{aumentar(preço, taxaA, True)}')
+    print(f'{taxaR}% de diminuir: \t{diminuir(preço, taxaR, True)}')
+    print('-'*30)
